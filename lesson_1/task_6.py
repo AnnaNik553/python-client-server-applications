@@ -24,6 +24,18 @@
 НАРУШЕНИЕ обозначенных условий - задание не выполнено!!!
 """
 
-with open('test_file.txt', mode='rb') as f:
-    for i in f.readlines():
-        print(i.decode('utf-8'), end='')
+import chardet
+
+# читаем данные в байтах и узнаем кодировку
+with open('test_file.txt', 'rb') as f:
+    data = f.readlines()
+    encoding = chardet.detect(data[0])['encoding']
+
+# перезаписываем данные в кодировке utf-8
+with open('test_file.txt', 'w', encoding='utf-8') as f:
+    for line in data:
+        f.writelines(line.decode(encoding))
+
+# читаем файл в кодировке utf-8
+with open('test_file.txt', encoding='utf-8') as f:
+    print(f.read())
