@@ -1,0 +1,29 @@
+2022-06-02 18:13:46,488 INFO       module: server message: Entered the function "process_client_message()" line № 23
+2022-06-02 18:13:46,488 INFO       module: server message: Message is valid line № 26
+2022-06-02 18:14:57,881 INFO       module: server message: Entered the function "process_client_message()" line № 23
+2022-06-02 18:14:57,881 INFO       module: server message: Message is valid line № 26
+2022-06-02 18:25:54,846 INFO       module: server message: Entered the function "process_client_message()" line № 23
+2022-06-02 18:25:54,846 INFO       module: server message: Message is valid line № 26
+2022-06-02 18:26:50,091 ERROR      module: server message: listen_port out of range! line № 49
+2022-06-02 18:26:50,091 ERROR      module: server message: В качастве порта может быть указано только число в диапазоне от 1024 до 65535. line № 56
+2022-06-02 18:28:39,514 ERROR      module: server message: После параметра 'a'- необходимо указать адрес, который будет слушать сервер. line № 69
+2022-06-02 18:52:01,451 INFO       module: server message: The connection with the client is open line № 85
+2022-06-02 18:52:01,451 INFO       module: server message: Entered the function "process_client_message()" line № 23
+2022-06-02 18:52:01,451 INFO       module: server message: Message is valid line № 26
+2022-06-02 18:52:01,451 INFO       module: server message: The connection with the client is closed line № 93
+2022-06-02 18:54:06,074 INFO       module: server message: The connection with the client is open line № 85
+2022-06-02 18:54:06,074 INFO       module: server message: Entered the function "process_client_message()" line № 23
+2022-06-02 18:54:06,074 INFO       module: server message: Message is valid line № 26
+2022-06-02 18:54:06,074 INFO       module: server message: The connection with the client is closed line № 93
+2022-06-02 18:54:54,576 INFO       module: server message: The connection with the client is open line № 85
+2022-06-02 18:54:54,576 INFO       module: server message: Entered the function "process_client_message()" line № 23
+2022-06-02 18:54:54,576 INFO       module: server message: Message is valid line № 26
+2022-06-02 18:54:54,576 INFO       module: server message: The connection with the client is closed line № 93
+2022-06-02 18:55:45,563 INFO       module: server message: The connection with the client is open line № 85
+2022-06-02 18:55:45,584 INFO       module: server message: Entered the function "process_client_message()" line № 23
+2022-06-02 18:55:45,584 INFO       module: server message: Message is valid line № 26
+2022-06-02 18:55:45,584 INFO       module: server message: The connection with the client is closed line № 93
+2022-06-02 18:56:56,901 INFO       module: server message: The connection with the client is open line № 85
+2022-06-02 18:56:56,901 INFO       module: server message: Entered the function "process_client_message()" line № 23
+2022-06-02 18:56:56,901 INFO       module: server message: Message is valid line № 26
+2022-06-02 18:56:56,901 INFO       module: server message: The connection with the client is closed line № 93

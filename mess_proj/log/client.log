@@ -1,0 +1,10 @@
+2022-06-02 18:52:01,451 INFO       module: client message: A message from the client has been prepared line № 30
+2022-06-02 18:52:01,451 INFO       module: client message: Response from the server 200 : OK line № 42
+2022-06-02 18:54:06,074 INFO       module: client message: A message from the client has been prepared line № 30
+2022-06-02 18:54:06,074 INFO       module: client message: Response from the server 200 : OK line № 42
+2022-06-02 18:54:54,576 INFO       module: client message: A message from the client has been prepared line № 30
+2022-06-02 18:54:54,576 INFO       module: client message: Response from the server 200 : OK line № 42
+2022-06-02 18:55:45,563 INFO       module: client message: A message from the client has been prepared line № 30
+2022-06-02 18:55:45,584 INFO       module: client message: Response from the server 200 : OK line № 42
+2022-06-02 18:56:56,901 INFO       module: client message: A message from the client has been prepared line № 30
+2022-06-02 18:56:56,901 INFO       module: client message: Response from the server 200 : OK line № 42
