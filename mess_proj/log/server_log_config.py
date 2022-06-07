@@ -9,7 +9,7 @@ SERVER_LOG.setLevel(logging.DEBUG)
 log_format = logging.Formatter("%(asctime) - 5s %(levelname) - 10s module: %(module) - 5s message: %(message)s line № %(lineno)d")
 
 # Создаем обработчик, устанавливаем его уровень важности и форматтер
-handler = logging.handlers.TimedRotatingFileHandler('log/server.log', when='midnight', interval=1, encoding='utf-8')
+handler = logging.handlers.TimedRotatingFileHandler('log/server.log', when='D', interval=1, encoding='utf-8')
 handler.setLevel(logging.DEBUG)
 handler.setFormatter(log_format)
 

@@ -9,10 +9,12 @@ from common.variables import ACTION, PRESENCE, TIME, USER, ACCOUNT_NAME, \
 from common.utils import get_message, send_message
 import logging
 import log.client_log_config
+from decos import log
 
 CLIENT_LOG = logging.getLogger('client_mess')
 
 
+@log
 def create_presence(account_name='Guest'):
     '''
     Функция генерирует запрос о присутствии клиента
@@ -27,10 +29,11 @@ def create_presence(account_name='Guest'):
             ACCOUNT_NAME: account_name
         }
     }
-    CLIENT_LOG.info('A message from the client has been prepared')
+    CLIENT_LOG.info(f'Сообщение от клиента было подготовлено: {out}')
     return out
 
 
+@log
 def process_ans(message):
     '''
     Функция разбирает ответ сервера
@@ -39,11 +42,11 @@ def process_ans(message):
     '''
     if RESPONSE in message:
         if message[RESPONSE] == 200:
-            CLIENT_LOG.info('Response from the server 200 : OK')
+            CLIENT_LOG.info('Ответ от сервера 200 : OK')
             return '200 : OK'
-        CLIENT_LOG.warning('Response from the server 400')
+        CLIENT_LOG.warning('Ответ от сервера 400')
         return f'400 : {message[ERROR]}'
-    CLIENT_LOG.error('The message from the server does not contain the code')
+    CLIENT_LOG.error('Сообщение от сервера не содержит кода состояния')
     raise ValueError
 
 

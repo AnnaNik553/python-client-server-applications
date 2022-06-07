@@ -8,9 +8,12 @@ from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
 from common.utils import get_message, send_message
 import logging
 import log.server_log_config
+from decos import log
 
 SERVER_LOG = logging.getLogger('server_mess')
 
+
+@log
 def process_client_message(message):
     '''
     Обработчик сообщений от клиентов, принимает словарь -
@@ -20,12 +23,11 @@ def process_client_message(message):
     :param message:
     :return:
     '''
-    SERVER_LOG.info('Entered the function "process_client_message()"')
     if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
             and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
-        SERVER_LOG.info('Message is valid')
+        SERVER_LOG.info('Сообщение корректно')
         return {RESPONSE: 200}
-    SERVER_LOG.warning('Message is not valid!')
+    SERVER_LOG.warning('Сообщение не корректно!')
     return {
         RESPONSE: 400,
         ERROR: 'Bad Request'
@@ -82,7 +84,7 @@ def main():
 
     while True:
         client_socket, client_address = server_socket.accept()
-        SERVER_LOG.info('The connection with the client is open')
+        SERVER_LOG.info('Соединение с клиентом установлено')
         try:
             message_from_cient = get_message(client_socket)
             print(message_from_cient)
@@ -90,12 +92,12 @@ def main():
             response = process_client_message(message_from_cient)
             send_message(client_socket, response)
             client_socket.close()
-            SERVER_LOG.info('The connection with the client is closed')
+            SERVER_LOG.info('Соединение с клиентом закрыто')
         except (ValueError, json.JSONDecodeError):
             SERVER_LOG.error('Принято некорретное сообщение от клиента.')
             print('Принято некорретное сообщение от клиента.')
             client_socket.close()
-            SERVER_LOG.info('The connection with the client is closed')
+            SERVER_LOG.info('Соединение с клиентом закрыто')
 
 
 if __name__ == '__main__':
