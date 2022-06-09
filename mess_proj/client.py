@@ -3,6 +3,7 @@
 import sys
 import json
 import socket
+import argparse
 import time
 from common.variables import ACTION, PRESENCE, TIME, USER, ACCOUNT_NAME, \
     RESPONSE, ERROR, DEFAULT_IP_ADDRESS, DEFAULT_PORT
@@ -52,15 +53,19 @@ def process_ans(message):
 
 def main():
     '''Загружаем параметы коммандной строки'''
-    # client.py 192.168.0.100 8079
+    # client.py -a 192.168.0.100 -p 8079 -m read
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-a', required=False, default=DEFAULT_IP_ADDRESS,
+                        help='После параметра \'a\'- необходимо указать адрес, который будет слушать сервер.')
+    parser.add_argument('-p', type=int, required=False, default=DEFAULT_PORT,
+                        help='В качастве порта может быть указано только число в диапазоне от 1024 до 65535.')
+    parser.add_argument('-m', '-mode', help='mode может иметь значение read  или write')
+    args = parser.parse_args()
+
     try:
-        server_address = sys.argv[2]
-        server_port = int(sys.argv[3])
-        if server_port < 1024 or server_port > 65535:
+        if args.p < 1024 or args.p > 65535:
             raise ValueError
-    except IndexError:
-        server_address = DEFAULT_IP_ADDRESS
-        server_port = DEFAULT_PORT
     except ValueError:
         CLIENT_LOG.error('В качестве порта может быть указано только число в диапазоне от 1024 до 65535.')
         print('В качестве порта может быть указано только число в диапазоне от 1024 до 65535.')
@@ -69,7 +74,7 @@ def main():
     # Инициализация сокета и обмен
 
     transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    transport.connect((server_address, server_port))
+    transport.connect((args.a, args.p))
     message_to_server = create_presence()
     send_message(transport, message_to_server)
     try:
@@ -78,6 +83,16 @@ def main():
     except (ValueError, json.JSONDecodeError):
         CLIENT_LOG.error('Не удалось декодировать сообщение сервера.')
         print('Не удалось декодировать сообщение сервера.')
+
+    while True:
+        if args.m == 'write':
+            message = input('Введите сообщение: ')
+            if message == 'exit':
+                break
+            transport.send(message.encode('utf-8'))
+        if args.m == 'read':
+            data = transport.recv(1024).decode('utf-8')
+            print(data)
 
 
 if __name__ == '__main__':
