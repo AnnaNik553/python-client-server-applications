@@ -11,7 +11,7 @@ import traceback
 
 if os.path.split(sys.argv[0])[1] == 'server.py':
     LOGGER = logging.getLogger('server_mess')
-elif os.path.split(sys.argv[0])[1] == 'client.py':
+elif os.path.split(sys.argv[0])[1].find('client') == 0:
     LOGGER = logging.getLogger('client_mess')
 
 
